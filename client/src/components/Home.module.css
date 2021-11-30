@@ -1,0 +1,12 @@
+* {
+    font-family: 'Poppins', sans-serif;
+  } 
+  
+.balloon {    
+    width: 50%;    
+    margin-top: 5em;
+    margin-right: auto;
+    margin-left: auto;
+    display: block;
+  }
+    
