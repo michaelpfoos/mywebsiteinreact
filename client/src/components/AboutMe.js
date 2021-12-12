@@ -51,7 +51,7 @@ const AboutMe = () => {
                                 <td>React</td> 
                                 <td>
                                     <div className="progress">
-                                    <div className="progress-bar bg-secondary progress-bar-striped progress-bar-animated" role="progressbar" style={{width: "50%"}} aria-valuenow={10} aria-valuemin={0} aria-valuemax={100}></div>
+                                    <div className="progress-bar bg-secondary progress-bar-striped progress-bar-animated" role="progressbar" style={{width: "70%"}} aria-valuenow={10} aria-valuemin={0} aria-valuemax={100}></div>
                                     </div>
                                 </td>               
                             </tr>

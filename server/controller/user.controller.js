@@ -2,30 +2,9 @@ const User = require('../models/user.model.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
-module.exports = {
-    
-    // register: (req, res) => {
-    //     console.log('in register');
-    //     console.log(req.body);
-    //     const user = new User(req.body);
+module.exports = {    
 
-    //     user.save()
-    //         .then((newUser) => {
-    //             console.log(newUser);
-    //             console.log('Successfully registered!');
-    //             res.json({
-    //                 successMessage: "Thank you for registering!",
-    //                 user: newUser,
-    //             });                
-    //         })
-    //         .catch((err) => {
-    //             console.log('registration not successful');
-    //             console.log(err);
-    //             res.status(400).json(err);
-    //         });            
-    // },
-    register: (req, res) => {
-        console.log('in register');
+    register: (req, res) => {        
         //console.log(req.body);
         const count = User.count({});      
         const user = new User(req.body);
@@ -78,9 +57,9 @@ module.exports = {
                                         {
                                             id: userRecord._id,
                                             email: userRecord.email,
-                                            username: userRecord.username //left comma out here don't think we need
+                                            username: userRecord.username 
                                         },
-                                        process.env.JWT_SECRET //left comma out here don't think we need
+                                        process.env.JWT_SECRET 
                                     ),
                                     {
                                         httpOnly: true,
@@ -97,7 +76,7 @@ module.exports = {
                                     message: "Login and/or Email Invalid"
                                 });
                             }
-                        }) //Tom has an extra catch beneath this, investigate.
+                        }) 
                     }
                 }) 
                 .catch((err) => {

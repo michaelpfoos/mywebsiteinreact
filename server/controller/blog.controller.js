@@ -27,7 +27,7 @@ module.exports = {
     },
     //Change this so it only finds the fields you want to display in the index.
     findAllBlogs: (req, res)=> {
-        Blog.find({})
+        Blog.find({}).collation({locale:'en',strength: 2}).sort({posted:-1})
         .then((findAllBlogs)=>{
             res.json(findAllBlogs);
         })

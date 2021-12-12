@@ -11,6 +11,7 @@ const Login = () => {
 
     const [loggedin, setLoggedIn] = useState(false);
     const [userId, setUserId] = useState('');
+    const [error, setError] = useState('');
 
     const changeHandler = (e) => {
         setCredentials({
@@ -31,7 +32,8 @@ const Login = () => {
             setLoggedIn(true);
         })
         .catch((err)=>{
-            console.log(err);            
+            console.log(err);   
+            setError(err.response.data.message);         
         });
     }
 
@@ -45,7 +47,8 @@ const Login = () => {
                 <label className="form-label">Password: </label>
                 <input type="password" className="form-control" onChange={changeHandler} name="password" />
                 <input className="btn btn-secondary mt-3" type="submit" value="Login" />               
-                <Link to="/register/" className="btn btn-secondary mt-3 ms-3">Register</Link>
+                <Link to="/register/" className="btn btn-secondary mt-3 ms-3">Register</Link>     
+                {!error ? null : <p className='mt-3 fs-5 text-danger' >{error}</p>}           
             </form>
         </div>
     );

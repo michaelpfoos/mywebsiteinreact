@@ -18,6 +18,8 @@ const PostBlog = () => {
         video: ""
     })
 
+    const [errors, setErrors] = useState('');
+
     const [isPosted, setIsPosted] = useState(false);
 
     const [files, setFiles] = useState([]);
@@ -44,7 +46,8 @@ const PostBlog = () => {
             uploadFiles();
         })
         .catch((err)=>{
-            console.log(err);
+            console.log(err.response.data.message);
+            setErrors(err.response.data.message);
         })       
 
     }
@@ -217,11 +220,11 @@ const PostBlog = () => {
             <form id="form" encType="multipart/form-data" className="container-md mt-5 mb-5 p-5 border border-dark border-2 rounded">
                 <h1 className="text-center">Post Blog</h1>
                 <label className="form-label fw-bold">Category</label>
-                <input onChange={onChangeHandlers} name="category" type="text" className="form-control mb-3" />
-                <label className="form-label fw-bold">Title</label>
+                <input onChange={onChangeHandlers} name="category" type="text" className="form-control mb-3" />            
+                <label className="form-label fw-bold">Title</label>                
                 <input onChange={onChangeHandlers} name="title" type="text" className="form-control mb-3" />
                 <label className="form-label fw-bold">Posted</label>
-                <input onChange={onChangeHandlers} name="posted" type="date" className="form-control mb-3" />            
+                <input onChange={onChangeHandlers} name="posted" type="date" className="form-control mb-3" />                 
                 {
                     blogData.links.map((link, linkIndex) => {
                         return (
@@ -263,7 +266,8 @@ const PostBlog = () => {
                 <h2>Video</h2>
                 <label className="form-label fw-bold mt-3">Url</label>
                 <input className="form-control" onChange={onChangeHandlers} type="text" name="video" />
-                <input type="submit" onClick={submitBlog} value="Submit Blog" className="btn btn-secondary mt-4" />              
+                <input type="submit" onClick={submitBlog} value="Submit Blog" className="btn btn-secondary mt-4" />   
+                {errors === '' ? null : <p className="mt-3 fs-5 text-danger">{errors}</p> }           
             </form>
         </div>
     );

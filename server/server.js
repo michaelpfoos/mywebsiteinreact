@@ -37,9 +37,9 @@ const upload = multer ({
 //This must be called before adding your routes
 app.use(cors({   
     credentials: true,
-    origin: "http://linuxhome:3000"     
+    origin: process.env.ORIGIN   
 }))
-//app.use(cors());
+
 //Route for uploading files.
 app.post('/api/upload', upload.any(), function (req, res, next) {   
     res.json({ message: "Successfully uploaded files" });
