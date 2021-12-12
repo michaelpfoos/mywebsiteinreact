@@ -2,8 +2,9 @@ const mongoose = require('mongoose');
 
 //const dbName = 'blog';
 const dbName = process.env.DB_NAME;
+const mongodb = process.env.MONGO_URL;
 
-const connectionString = `mongodb://localhost/${dbName}`;
+const connectionString = mongodb + dbName;
 
 mongoose.connect(connectionString, {
     useNewUrlparser: true,

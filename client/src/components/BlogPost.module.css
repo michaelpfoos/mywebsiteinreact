@@ -1,0 +1,19 @@
+.cximg {
+    max-height: 200px;
+    width: auto;   
+    margin-right: .5em;    
+}
+
+.addimages {
+    max-width: 100%;
+    height: auto;    
+}
+
+iframe {
+    width: 560px;
+    height: 315px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;        
+}
+

@@ -1,5 +1,7 @@
 import React from 'react';
 import BlogIndex from './BlogIndex';
+import BlogPost from './BlogPost';
+
 
 const Blog = (props) => {
 
@@ -7,7 +9,7 @@ const Blog = (props) => {
 
     return (
         <div>
-            <BlogIndex />
+            {title == null || category == null ? <BlogIndex /> : <BlogPost title={title} category={category} />}                    
         </div>
     );
 }

@@ -4,29 +4,61 @@ const jwt = require('jsonwebtoken');
 
 module.exports = {
     
+    // register: (req, res) => {
+    //     console.log('in register');
+    //     console.log(req.body);
+    //     const user = new User(req.body);
+
+    //     user.save()
+    //         .then((newUser) => {
+    //             console.log(newUser);
+    //             console.log('Successfully registered!');
+    //             res.json({
+    //                 successMessage: "Thank you for registering!",
+    //                 user: newUser,
+    //             });                
+    //         })
+    //         .catch((err) => {
+    //             console.log('registration not successful');
+    //             console.log(err);
+    //             res.status(400).json(err);
+    //         });            
+    // },
     register: (req, res) => {
         console.log('in register');
-        console.log(req.body);
+        //console.log(req.body);
+        const count = User.count({});      
         const user = new User(req.body);
 
-        user.save()
-            .then((newUser) => {
-                console.log(newUser);
-                console.log('Successfully registered!');
-                res.json({
-                    successMessage: "Thank you for registering!",
-                    user: newUser,
-                });                
-            })
-            .catch((err) => {
-                console.log('registration not successful');
-                console.log(err);
-                res.status(400).json(err);
-            });            
+        User.count({}, function( err, count){
+            if ( count === 0 ) {
+                user.save()
+                    .then((newUser) => {
+                        console.log(newUser);
+                        console.log('Successfully registered!');
+                        res.json({
+                            successMessage: "Thank you for registering!",
+                            user: newUser,
+                        });                
+                    })
+                    .catch((err) => {
+                        console.log('registration not successful');
+                        console.log(err);
+                        res.status(400).json(err);
+                    });  
+            }
+            else {
+                console.log('There is already an admin on this server.')
+                res.status(400).json({
+                    message: "There is already an admin on this server"
+                })
+            }
+        })
+               
     },
 
     login: (req, res) => {
-        User.findOne({ email: req.body.email })
+        User.findOne({ username: req.body.username }) 
             .then((userRecord) => {
                 if (userRecord === null) {
                     res.status(400).json({ message: "Invalid Login Attempt" })
@@ -65,9 +97,9 @@ module.exports = {
                                     message: "Login and/or Email Invalid"
                                 });
                             }
-                        })
+                        }) //Tom has an extra catch beneath this, investigate.
                     }
-                })
+                }) 
                 .catch((err) => {
                     console.log('error');
                     res.status(400).json({ message: "Invalid Attempt" });

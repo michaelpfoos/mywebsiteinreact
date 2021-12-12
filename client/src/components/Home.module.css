@@ -3,7 +3,8 @@
   } 
   
 .balloon {    
-    width: 50%;    
+    width: 40em; 
+    max-width: 60%;   
     margin-top: 5em;
     margin-right: auto;
     margin-left: auto;

@@ -1,10 +1,11 @@
 import './App.css';
+import { Routes, Route } from "react-router-dom";
 import HomeView from './views/HomeView';
 import AboutMeView from './views/AboutMeView';
 import BlogView from './views/BlogView';
 import Auth from './views/Auth';
 import PostBlogView from './views/PostBlogView';
-import { Routes, Route } from "react-router-dom";
+import Register from './views/Register';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Route path ="/blog/" element={<BlogView page={ "blog" } />} />
         <Route path ="/blog/:category/:title/" element={<BlogView page={ "blog" } />} />
         <Route path="/admin/" element={<Auth />} />
+        <Route path="/register/" element={<Register />} />
         <Route path="/post/" element={<PostBlogView />} />
       </Routes>
     </div>

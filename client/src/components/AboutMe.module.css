@@ -1,4 +1,5 @@
 .myphoto {
-    max-height: 300px;
+    max-height: 250px;
+    width: auto;
     max-width: 95%;
 }

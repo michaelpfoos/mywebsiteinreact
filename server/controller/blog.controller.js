@@ -1,5 +1,6 @@
 const Blog = require('../models/blog.model');
 
+
 module.exports = {
     addNewBlog: (req, res)=> {
         Blog.create(req.body)
@@ -7,7 +8,8 @@ module.exports = {
             res.json(newBlog);
         })
         .catch((err)=>{            
-            res.status(400).json(err);            
+            res.status(400).json(err);   
+            console.log(err);         
         })
     },
     updateBlog: (req, res)=> {
@@ -23,6 +25,7 @@ module.exports = {
             res.status(400).json(err);            
         })
     },
+    //Change this so it only finds the fields you want to display in the index.
     findAllBlogs: (req, res)=> {
         Blog.find({})
         .then((findAllBlogs)=>{

@@ -6,15 +6,10 @@ const AboutMe = () => {
 
     return (
         <div className="container">    
-                <div className="row">
-                    <div className="col col-lg-2">
-                        <div className="d-flex justify-content-center">                        
-                            <img src={michaelfoos} id="myphoto" alt="Michael Foos" className={`${styles.myphoto} rounded mt-5 mb-5`} />                                                
-                        </div>
-                    </div>   
+                <div className="row">                  
                     <div className="col col-xlg-2 d-flex align-items-center">
                         <div className="d-flex align-items-center">                            
-                            <p className="text-dark fs-5 fw-bold text-white fs-5 lh-lg">I began my journey towards becoming a web developer three years ago when I was writing SQL Queries for UHS.  I realized how much I enjoy coding.  Soon after I picked up a copy of HTML &  CSS: Design and Build Web Sites by John Ducket
+                            <p className="text-dark fs-5 fw-bold text-white fs-5 lh-lg"><img src={michaelfoos} id="myphoto" alt="Michael Foos" className={`${styles.myphoto} rounded me-3 float-start`} />I began my journey towards becoming a web developer three years ago when I was writing SQL Queries for UHS.  I realized how much I enjoy coding.  Soon after I picked up a copy of HTML &  CSS: Design and Build Web Sites by John Ducket
                                 and I was hooked. These days I actively look for problems that I can fix with code.  Whether it be automating a test case with Java,
                                 or automating a video game I play to get more drops I am always looking for the edge programming can give me.</p>                               
                         </div>
