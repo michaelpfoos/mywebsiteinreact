@@ -13,7 +13,7 @@ const NavBar = (props) => {
 
         const url = process.env.REACT_APP_API_URL + 'api/users/logout/';  
 
-        axios.post(url, {
+        axios.post(url, {}, {
             withCredentials: true
         })
             .then((res)=>{

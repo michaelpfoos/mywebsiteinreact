@@ -10,8 +10,9 @@
 }
 
 iframe {
-    width: 560px;
+    width: 560px;    
     height: 315px;
+    max-width: 90%;
     display: block;
     margin-right: auto;
     margin-left: auto;        

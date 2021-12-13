@@ -5,9 +5,11 @@ import NavBar from '../components/NavBar';
 
 const Register = (props) => {
 
+    const { loggedIn, setLoggedIn } = props;
+    
     return (
         <div>
-            <NavBar />
+            <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <Registration />
         </div>
     );

@@ -22,7 +22,7 @@ function App() {
         <Route path ="/blog/" element={<BlogView page={ "blog" } loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path ="/blog/:category/:title/" element={<BlogView page={ "blog" } loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/admin/" element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
-        <Route path="/register/" element={<Register />} />
+        <Route path="/register/" element={<Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}  />
         <Route path="/post/" element={<PostBlogView loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/post/:blogId" element={<EditBlogView loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
       </Routes>
