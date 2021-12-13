@@ -1,6 +1,5 @@
 const fs = require('fs');
 const baseUrl = process.env.SERVER_URL + '/files/';
-console.log(__basedir);
 
 const getListFiles = (req, res) => {
     const directoryPath = __basedir + "/resources/static/assets/uploads/"  

@@ -2,10 +2,28 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import styles from './NavBar.module.css';
 import AboutMe from './AboutMe';
+import axios from 'axios';
 
 const NavBar = (props) => {    
 
-    const { coverPage, page } = props;
+    const { coverPage, page, loggedIn, setLoggedIn } = props;
+
+    const logout = (e) => {
+        e.preventDefault();
+
+        const url = process.env.REACT_APP_API_URL + 'api/users/logout/';  
+
+        axios.post(url, {
+            withCredentials: true
+        })
+            .then((res)=>{
+                console.log(res.data);  
+                setLoggedIn(false);              
+            })
+            .catch((err)=>{
+                console.log(err);
+            });
+    }
 
     return (        
     <div className={coverPage === true ? `container-fluid ${styles.eriefullscreen}` : `container-fluid ${styles.erie}` }>            
@@ -26,7 +44,20 @@ const NavBar = (props) => {
                         </li>   
                         <li className="nav-item">                            
                             <Link to="/blog/" className={page === 'blog' ? "fs-4 nav-link fw-bold active" : "fs-4 nav-link fw-bold"}>Blog</Link>
-                        </li>                                                       
+                        </li> 
+                        {
+                            loggedIn === false ? null :
+                            <li className="nav-item">                            
+                                <Link to="/post/" className={page === 'post' ? "fs-4 nav-link fw-bold active" : "fs-4 nav-link fw-bold"}>Post</Link>                            
+                            </li>                                              
+                        }
+                        {
+                            loggedIn === false ? null :
+                            <li className="nav-item">                            
+                                <a to="/post/" href="logout" onClick={logout} className="fs-4 nav-link fw-bold">Logout</a>                            
+                            </li>                                              
+                        }
+
                     </ul>            
                 </div>
             </div>

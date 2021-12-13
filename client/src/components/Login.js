@@ -2,16 +2,16 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Link, Navigate } from "react-router-dom";
 
-const Login = () => {
+const Login = (props) => {
 
     const [credentials, setCredentials] = useState({
         username: '',
         password: ''
     });
-
-    const [loggedin, setLoggedIn] = useState(false);
+   
+    const {loggedIn, setLoggedIn} = props;
     const [userId, setUserId] = useState('');
-    const [error, setError] = useState('');
+    const [error, setError] = useState('');   
 
     const changeHandler = (e) => {
         setCredentials({
@@ -25,11 +25,9 @@ const Login = () => {
         const url = process.env.REACT_APP_API_URL + 'api/users/login/';        
 
         axios.post(url, credentials, { withCredentials: true })
-        .then((res)=>{
-            console.log(res, "res");
-            console.log(res.data);
+        .then((res)=>{           
             setUserId(res.data.userId);
-            setLoggedIn(true);
+            setLoggedIn(true);           
         })
         .catch((err)=>{
             console.log(err);   
@@ -38,7 +36,7 @@ const Login = () => {
     }
 
     return (
-        loggedin === true ? <Navigate to="/post/" state={{ url_id: userId }} /> :
+        loggedIn === true ? <Navigate to="/blog/" state={{ url_id: userId }} /> :
         <div className="container-md">
             <form style={{ maxWidth: "500px" }} className="container-md mt-5 mb-5 p-5 border border-dark border-1" onSubmit={login}>
                 <h1 className="text-center">Login Page</h1>

@@ -4,11 +4,11 @@ import Home from '../components/Home';
 
 const HomeView = (props) => {
 
-    const { page } = props;
+    const { page, loggedIn, setLoggedIn } = props;
 
     return (
         <div>
-            <NavBar page={page} />
+            <NavBar page={page} loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
             <Home />
         </div>
     );

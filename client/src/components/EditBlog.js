@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Navigate } from "react-router-dom";
 
-const PostBlog = (props) => {   
-    
-    const { loggedIn } = props;
+const EditBlog = (props) => {    
+
+    const { blogId } = props;
 
     const [blogData, setBlogData] = useState({
         category: "",
@@ -24,10 +24,24 @@ const PostBlog = (props) => {
     const [files, setFiles] = useState([]);
     const [additionalFiles, setAdditionalFiles] = useState([]);
 
+    useEffect(()=>{
+
+        const url = process.env.REACT_APP_API_URL + `api/blog/${blogId}`;
+        
+        axios.get(url)
+            .then((res=>{
+                setBlogData(res.data[0]);
+            }))
+            .catch((err)=>{
+                console.log(err);
+            });
+
+    },[])
+
     const submitBlog = (e) => {
         //submit code goes here
         e.preventDefault();
-        const url = process.env.REACT_APP_API_URL + 'api/blog/new/';        
+        const url = process.env.REACT_APP_API_URL + `api/blog/${blogId}`;        
 
         const data = {
             category: blogData.category,
@@ -37,64 +51,17 @@ const PostBlog = (props) => {
             paragraph: blogData.paragraph,
             images: blogData.images,
             video: blogData.video
-        };
+        };       
 
-        axios.post(url, data, { withCredentials: true })
-        .then((res)=>{            
-            //Upload the files
-            uploadFiles();
+        axios.put(url, data, { withCredentials: true })
+        .then((res)=>{          
+           setIsPosted(true);
         })
-        .catch((err)=>{
-            console.log(err.response.data.message);
+        .catch((err)=>{            
             setErrors(err.response.data.message);
         })       
 
     }
-    
-    const uploadFiles = () => {        
-        //handle the files           
-        const formData = new FormData(); 
-        const config = {
-            headers: {
-                'content-type': 'multipart/form-data'
-            }
-        };         
-        let fileNames = [];
-                    
-        const paragraphdata = blogData.paragraph;
-
-        for (let i=0;i<paragraphdata.length;i++) {
-            if (paragraphdata[i].image) {
-                fileNames.push(paragraphdata[i].image);                    
-            }
-        }      
-
-        //append the files to the form
-        for (let i=0;i<fileNames.length;i++) {
-            formData.append(fileNames[i], files[i][0]);           
-        }   
-
-        if (additionalFiles[0] != null) {
-            
-            //append the additional files to the form
-            fileNames = blogData.images;
-            for (let i=0;i<fileNames.length;i++) {
-                formData.append(fileNames[i], additionalFiles[i][0]);                
-            }                
-        }        
-
-        const postUrl = process.env.REACT_APP_API_URL + 'api/upload/';                    
-
-        axios.post(postUrl, formData, config)
-        .then((res)=>{               
-            setIsPosted(true);
-        })
-        .catch((err)=>{
-            console.log(err);
-        });                        
-               
-    }
-
 
     const onChangeHandlers = (e) => {
 
@@ -213,17 +180,14 @@ const PostBlog = (props) => {
     }
 
     return (
-        loggedIn === false ? <Navigate to='/admin/' /> : 
         isPosted === true ? <Navigate to='/blog/' /> :
         <div className="container-md">
             <form id="form" encType="multipart/form-data" className="container-md mt-5 mb-5 p-5 border border-dark border-2 rounded">
-                <h1 className="text-center">Post Blog</h1>
+                <h1 className="text-center">Edit Blog</h1>
                 <label className="form-label fw-bold">Category</label>
-                <input onChange={onChangeHandlers} name="category" type="text" className="form-control mb-3" />            
+                <input onChange={onChangeHandlers} name="category" type="text" value={blogData.category} className="form-control mb-3" />            
                 <label className="form-label fw-bold">Title</label>                
-                <input onChange={onChangeHandlers} name="title" type="text" className="form-control mb-3" />
-                <label className="form-label fw-bold">Posted</label>
-                <input onChange={onChangeHandlers} name="posted" type="date" className="form-control mb-3" />                 
+                <input onChange={onChangeHandlers} name="title" type="text" value={blogData.title} className="form-control mb-3" />           
                 {
                     blogData.links.map((link, linkIndex) => {
                         return (
@@ -240,36 +204,20 @@ const PostBlog = (props) => {
                         return (
                             <div className="border border-1 border-secondary p-3 mb-2 rounded" key={index}>
                                 <label className="form-label fw-bold">Paragraph</label>  
-                                <textarea onChange={onChangeHandlers} value={blogData.paragraph[index].text} name={`paragraph[${index}]`} className="form-control" />    
-                                <label className="form-label d-block fw-bold mt-3">Photo</label>  
-                                <div>   
-                                    <input className="mb-3" type="file" onChange={onChangeHandlers} name={`file[${index}]`} />                                 
-                                </div>                                                             
+                                <textarea onChange={onChangeHandlers} value={blogData.paragraph[index].text} name={`paragraph[${index}]`} className="form-control" />                                                                                         
                             </div>
                         );
                     })
                 }
-                <input className="btn btn-secondary mt-3" onClick={addParagraph} type="button" value="Add Paragraph"/>
-                <h2 className="mt-3">Additional Images</h2>
-                {
-                    additionalFiles.map((image, imageindex)=>{
-                        return (
-                            <div key={imageindex} className="border border-1 border-secondary p-3 mb-2 rounded">   
-                                <input type="file" onChange={onChangeHandlers} name={`afile[${imageindex}]`} /> 
-                                <input className="btn btn-primary mt-3 mb-3" type="button" value="Remove Image" />    
-                            </div> 
-                        );
-                    })
-                }
-                <input className="btn btn-secondary mb-3 mt-3" onClick={addAdditionalFile} type="button" value="Add Images"/> 
+                <input className="btn btn-secondary mt-3 mb-3" onClick={addParagraph} type="button" value="Add Paragraph"/>              
                 <h2>Video</h2>
                 <label className="form-label fw-bold mt-3">Url</label>
-                <input className="form-control" onChange={onChangeHandlers} type="text" name="video" />
-                <input type="submit" onClick={submitBlog} value="Submit Blog" className="btn btn-secondary mt-4" />   
+                <input className="form-control" onChange={onChangeHandlers} value={blogData.video} type="text" name="video" />
+                <input type="submit" onClick={submitBlog} value="Submit Updates" className="btn btn-secondary mt-4" />   
                 {errors === '' ? null : <p className="mt-3 fs-5 text-danger">{errors}</p> }           
             </form>
         </div>
     );
 }
 
-export default PostBlog;
+export default EditBlog;

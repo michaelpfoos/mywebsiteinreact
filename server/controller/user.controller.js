@@ -85,12 +85,14 @@ module.exports = {
                 });
     },
 
-    logout: (req, res) => {
-        console.log("logging out");
-        res.clearCookie("usertoken");
+    logout: (req, res) => {              
+        res.clearCookie('usertoken', {        
+            httpOnly: true            
+        });
         res.json({
             message: "You have successfully logged out!"
         });
+       
     },
 
     getOneUser: (req, res) => {

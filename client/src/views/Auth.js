@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Login from '../components/Login';
 import NavBar from '../components/NavBar';
 
-const Auth = () => {
+const Auth = (props) => {
+
+    const { loggedIn, setLoggedIn } = props;
+
     return(
         <div>
-            <NavBar />
-            <Login />            
+            <NavBar loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
+            <Login loggedIn={loggedIn} setLoggedIn={setLoggedIn} />            
         </div>
     );
 }
