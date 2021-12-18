@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import { Routes, Route } from "react-router-dom";
+import {Helmet} from "react-helmet";
 import HomeView from './views/HomeView';
 import AboutMeView from './views/AboutMeView';
 import BlogView from './views/BlogView';
@@ -12,13 +13,13 @@ import EditBlogView from './views/EditBlogView';
 
 function App() {
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);  
 
   return (
-    <div className="App">
+    <div className="App"> 
       <Routes>
-        <Route path="/" element={<HomeView page= { "home" } loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />     
-        <Route path="/aboutme/" element={<AboutMeView page={ "aboutMe" } loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />   
+        <Route path="/" element={<HomeView page= { "home" } loggedIn={loggedIn} setLoggedIn={setLoggedIn} title={"Home page of Michael Foos"} />} />     
+        <Route path="/aboutme/" element={<AboutMeView page={ "aboutMe" } loggedIn={loggedIn} setLoggedIn={setLoggedIn} title={"About Michael Foos"} />} />   
         <Route path ="/blog/" element={<BlogView page={ "blog" } loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path ="/blog/:category/:title/" element={<BlogView page={ "blog" } loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/admin/" element={<Auth loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
