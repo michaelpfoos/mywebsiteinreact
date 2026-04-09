@@ -1,7 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import { Routes, Route } from "react-router-dom";
-import {Helmet} from "react-helmet";
+import { Routes, Route, Navigate } from "react-router-dom";
 import HomeView from './views/HomeView';
 import AboutMeView from './views/AboutMeView';
 import BlogView from './views/BlogView';
@@ -26,6 +25,7 @@ function App() {
         <Route path="/register/" element={<Register loggedIn={loggedIn} setLoggedIn={setLoggedIn} />}  />
         <Route path="/post/" element={<PostBlogView loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
         <Route path="/post/:blogId" element={<EditBlogView loggedIn={loggedIn} setLoggedIn={setLoggedIn} />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );

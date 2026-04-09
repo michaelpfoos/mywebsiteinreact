@@ -5,7 +5,8 @@ import { useParams } from "react-router-dom";
 
 const EditBlogView = (props) => {
 
-    const { blogId, loggedIn, setLoggedIn } = useParams();  
+    const { loggedIn, setLoggedIn } = props;
+    const { blogId } = useParams();
 
     return (
         <div>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import NavBar from '../components/layout/NavBar';
 import Blog from '../components/blog/Blog';
 import { useParams } from "react-router-dom";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const BlogView = (props) => {
 

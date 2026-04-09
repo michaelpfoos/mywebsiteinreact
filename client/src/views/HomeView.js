@@ -1,7 +1,7 @@
 import React from 'react';
 import NavBar from '../components/layout/NavBar';
 import Home from '../components/layout/Home';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const HomeView = (props) => {
 

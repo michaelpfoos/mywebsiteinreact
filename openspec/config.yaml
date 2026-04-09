@@ -1,0 +1,17 @@
+schema: spec-driven
+
+context: |
+  Repository structure:
+  - Client application code is in the client/ folder.
+  - Server application code is in the server/ folder.
+
+  Tech stack:
+  - The client uses Vite as the build toolchain with React 17 (migrated from Create React App).
+  - The server is an Express.js application running on Node.js.
+
+rules:
+  proposal:
+    - Keep proposals under 500 words
+    - Include clear scope, constraints, and acceptance criteria
+  tasks:
+    - Break tasks into chunks of max 2 hours

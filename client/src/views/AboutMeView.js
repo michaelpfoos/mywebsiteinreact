@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from '../components/layout/NavBar';
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const AboutMeView = (props) => {
 
