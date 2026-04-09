@@ -3,7 +3,7 @@
 } 
 
 .erie {   
-    background-image: url('../images/eriemarathon2015.jpg');    
+    background-image: url('../../images/eriemarathon2015.jpg');    
     background-color: transparent;
     background-position: center center;
     background-repeat: no-repeat;
@@ -16,7 +16,7 @@
 
 .eriefullscreen {
     min-height: calc(100vh);  
-    background-image: url('../images/eriemarathon2015.jpg');    
+    background-image: url('../../images/eriemarathon2015.jpg');    
     background-color: transparent;
     background-position: center center;
     background-repeat: no-repeat;

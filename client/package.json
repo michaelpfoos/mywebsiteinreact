@@ -2,7 +2,9 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "dependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
     "@popperjs/core": "^2.10.2",
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
@@ -16,14 +18,15 @@
     "react-dom": "^17.0.2",
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.0.2",
-    "react-scripts": "4.0.3",
+    "vite": "^5.4.19",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "vite",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "echo \"No test runner configured for Vite migration\""
   },
   "eslintConfig": {
     "extends": [

@@ -27,7 +27,7 @@ const PostBlog = (props) => {
     const submitBlog = (e) => {
         //submit code goes here
         e.preventDefault();
-        const url = process.env.REACT_APP_API_URL + 'api/blog/new/';        
+        const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + 'api/blog/new/';        
 
         const data = {
             category: blogData.category,
@@ -83,7 +83,7 @@ const PostBlog = (props) => {
             }                
         }        
 
-        const postUrl = process.env.REACT_APP_API_URL + 'api/upload/';                    
+        const postUrl = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + 'api/upload/';                    
 
         axios.post(postUrl, formData, config)
         .then((res)=>{               

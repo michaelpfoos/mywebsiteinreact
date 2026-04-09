@@ -18,7 +18,7 @@ const Registration = () => {
     const onSubmit = (e) => {
         //code to submit here.
         e.preventDefault();
-        const url = process.env.REACT_APP_API_URL + 'api/users/register/';  
+        const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + 'api/users/register/';  
 
         axios.post(url, user) 
         .then((res)=>{

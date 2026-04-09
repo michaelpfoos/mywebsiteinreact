@@ -1,6 +1,6 @@
 import React from 'react';
-import NavBar from '../components/NavBar';
-import Home from '../components/Home';
+import NavBar from '../components/layout/NavBar';
+import Home from '../components/layout/Home';
 import {Helmet} from "react-helmet";
 
 const HomeView = (props) => {

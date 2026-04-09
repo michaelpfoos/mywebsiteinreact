@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import EditBlog from "../components/EditBlog";
+import NavBar from "../components/layout/NavBar";
+import EditBlog from "../components/blog/EditBlog";
 import { useParams } from "react-router-dom";
 
 const EditBlogView = (props) => {

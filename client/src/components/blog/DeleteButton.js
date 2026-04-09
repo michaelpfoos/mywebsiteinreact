@@ -6,7 +6,7 @@ const DeleteButton = (props) => {
     const { blogId, refresh, setRefresh } = props;
 
     const deletePost = () => {        
-        const url = process.env.REACT_APP_API_URL + `api/blog/${blogId}`;  
+        const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + `api/blog/${blogId}`;  
         
         axios.delete(url, { withCredentials: true })
             .then(res=>{

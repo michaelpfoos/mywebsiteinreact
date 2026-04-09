@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Home.module.css';
-import hotairballoon from '../images/mainpage.jpg';
+import hotairballoon from '../../images/mainpage.jpg';
 
 const Home = () => {
     return (

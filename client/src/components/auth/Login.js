@@ -22,7 +22,7 @@ const Login = (props) => {
 
     const login = (e) => {
         e.preventDefault();
-        const url = process.env.REACT_APP_API_URL + 'api/users/login/';        
+        const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + 'api/users/login/';        
 
         axios.post(url, credentials, { withCredentials: true })
         .then((res)=>{           

@@ -1,70 +1,47 @@
-# Getting Started with Create React App
+# Client (Vite + React 17)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This client now runs on Vite instead of Create React App.
 
-## Available Scripts
+## Scripts
 
-In the project directory, you can run:
+- `npm run dev` or `npm start`: Start the Vite development server.
+- `npm run build`: Build production assets into `client/build/`.
+- `npm run preview`: Preview the built app locally.
 
-### `npm start`
+## Environment Variables
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Vite exposes only variables prefixed with `VITE_`.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- `VITE_API_URL`: Base URL for API and file endpoints.
 
-### `npm test`
+Example:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```env
+VITE_API_URL=http://localhost:8000/
+```
 
-### `npm run build`
+A template is provided in `.env.example`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Backend Compatibility
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+The client continues to call the same server routes:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `/api/users/register/`
+- `/api/users/login/`
+- `/api/users/logout/`
+- `/api/blog/` and `/api/blog/:id`
+- `/api/upload`
+- `/files/*`
 
-### `npm run eject`
+If `VITE_API_URL` is not set, the client falls back to `http://localhost:8000/`.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Rollback Notes
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+If migration issues are found, rollback by restoring these files from git:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- `client/package.json` and `client/package-lock.json`
+- `client/public/index.html`
+- `client/src/*` env access changes
+- remove `client/index.html` and `client/vite.config.js`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Then reinstall dependencies with `npm install` in `client/`.

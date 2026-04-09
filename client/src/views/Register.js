@@ -1,6 +1,6 @@
 import React from 'react';
-import Registration from '../components/Registration';
-import NavBar from '../components/NavBar';
+import Registration from '../components/auth/Registration';
+import NavBar from '../components/layout/NavBar';
 
 
 const Register = (props) => {

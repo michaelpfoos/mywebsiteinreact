@@ -26,7 +26,7 @@ const EditBlog = (props) => {
 
     useEffect(()=>{
 
-        const url = process.env.REACT_APP_API_URL + `api/blog/${blogId}`;
+        const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + `api/blog/${blogId}`;
         
         axios.get(url)
             .then((res=>{
@@ -41,7 +41,7 @@ const EditBlog = (props) => {
     const submitBlog = (e) => {
         //submit code goes here
         e.preventDefault();
-        const url = process.env.REACT_APP_API_URL + `api/blog/${blogId}`;        
+        const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + `api/blog/${blogId}`;        
 
         const data = {
             category: blogData.category,

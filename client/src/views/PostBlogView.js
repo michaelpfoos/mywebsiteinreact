@@ -1,6 +1,6 @@
 import React from "react";
-import NavBar from "../components/NavBar";
-import PostBlog from "../components/PostBlog";
+import NavBar from "../components/layout/NavBar";
+import PostBlog from "../components/blog/PostBlog";
 
 const PostBlogView = (props) => {
     const {loggedIn, setLoggedIn} = props;

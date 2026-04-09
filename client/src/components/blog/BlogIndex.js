@@ -8,17 +8,18 @@ import DeleteButton from './DeleteButton';
 const BlogIndex = (props) => {
 
     const { loggedIn, refresh, setRefresh } = props;
-    const [blogPost, setBlogPost] = useState([{}]);     
+    const [blogPost, setBlogPost] = useState([]);     
 
     useEffect(()=>{
-        const url = process.env.REACT_APP_API_URL + 'api/blog/';   
+        const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + 'api/blog/';   
 
         axios.get(url)
         .then(res=>{
-            setBlogPost(res.data);
+            setBlogPost(Array.isArray(res.data) ? res.data : []);
         })
         .catch(err=>{
             console.log(err);
+            setBlogPost([]);
         });
 
     }, [refresh])

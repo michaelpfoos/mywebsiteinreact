@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import NavBar from '../components/NavBar';
-import Blog from '../components/Blog';
+import NavBar from '../components/layout/NavBar';
+import Blog from '../components/blog/Blog';
 import { useParams } from "react-router-dom";
 import {Helmet} from "react-helmet";
 

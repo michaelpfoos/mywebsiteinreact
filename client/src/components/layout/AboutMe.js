@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './AboutMe.module.css';
-import michaelfoos from '../images/michaelfoos.jpg';
+import michaelfoos from '../../images/michaelfoos.jpg';
 
 const AboutMe = () => {
 
@@ -88,7 +88,7 @@ const AboutMe = () => {
                         <a href="mailto:michaelpfoos@gmail.com" className="btn btn-outline-dark border-0 text-white fs-4 text-decoration-none"><i className="bi bi-envelope"></i> Email</a>                        
                     </div>
                     <div className="col">   
-                        <a href={`${process.env.REACT_APP_API_URL}files/MichaelPFoos.docx`} className="btn btn-outline-dark border-0 text-white fs-4 text-decoration-none"><i className="bi bi-file-earmark-word"></i> My Resume</a>                                               
+                        <a href={`${(import.meta.env.VITE_API_URL || 'http://localhost:8000/')}files/MichaelPFoos.docx`} className="btn btn-outline-dark border-0 text-white fs-4 text-decoration-none"><i className="bi bi-file-earmark-word"></i> My Resume</a>                                               
                     </div>
                     <div className="col"> 
                         <a href="https://github.com/michaelpfoos" className="btn btn-outline-dark border-0 text-white fs-4 text-decoration-none"><i className="bi bi-github"></i> Github</a>                       

@@ -8,7 +8,7 @@ const BlogPost = (props) => {
     const [redirect, setRedirect] = useState(false);   
     const [post, setPost] = useState({});
     const location = useLocation();    
-    const url = process.env.REACT_APP_API_URL + 'files/';  
+    const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + 'files/';  
 
 
     useEffect(()=>{
@@ -16,7 +16,7 @@ const BlogPost = (props) => {
             setRedirect(true);
         }
         else {                     
-            const url = process.env.REACT_APP_API_URL + `api/blog/${location.state.blogId}`;                         
+            const url = (import.meta.env.VITE_API_URL || 'http://localhost:8000/') + `api/blog/${location.state.blogId}`;                         
 
             axios.get(url)
                 .then((res=>{

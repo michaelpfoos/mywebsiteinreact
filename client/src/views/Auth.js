@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Login from '../components/Login';
-import NavBar from '../components/NavBar';
+import Login from '../components/auth/Login';
+import NavBar from '../components/layout/NavBar';
 
 const Auth = (props) => {
 
